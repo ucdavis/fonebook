@@ -1,0 +1,22 @@
+{
+  "name": "fonebook-server",
+  "version": "0.0.1",
+  "description": "TBD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dssit/fonebook.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/dssit/fonebook/issues"
+  },
+  "homepage": "https://github.com/dssit/fonebook#readme",
+  "dependencies": {
+    "express": "4.15.3"
+  }
+}
