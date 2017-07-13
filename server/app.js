@@ -1,54 +1,38 @@
 const express = require('express');
-const mysql = require('mysql');
 const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use(bodyParser.json()); // for parsing application/json
+// For parsing application/json
+app.use(bodyParser.json());
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'fonebook',
+// Set up routes
+const statusRoute = require('./routes/status');
+const workgroupsRoute = require('./routes/workgroups');
+
+app.use('/status', statusRoute);
+app.use('/workgroups', workgroupsRoute);
+
+// Set up error handlers
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+
+  err.status = 404;
+
+  next(err);
 });
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.use((err, req, res) => {
+  // Set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-app.get('/hello', (req, res) => {
-  res.send('Hello World!');
+  // Render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
-app.get('/status', (req, res) => {
-  res.status(200).send('A-Okay');
-});
-app.get('/workgroups', (req, res) => {
-  connection.connect();
-
-  let workgroups = [];
-  connection.query('SELECT * from workgroups', (err, rows) => {
-    if (err) throw err;
-
-    workgroups = rows;
-    res.status(200).send(workgroups);
-  });
-
-  connection.end();
-});
-
-app.post('/workgroups', (req, res) => {
-  connection.connect();
-
-  connection.query('insert into workgroups (name,created_at,updated_at) values (?,now(),now())', [req.body.name], (err) => {
-    if (err) throw err;
-
-    res.status(200).send();
-  });
-
-  connection.end();
-});
-
-
+// Run server
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
 });
