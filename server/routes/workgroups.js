@@ -15,12 +15,9 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   pool.query('insert into workgroups (name,created_at,updated_at) values (?,now(),now())', [req.body.name], (err, results) => {
-    if (err) throw err;
-
-    console.log('insert results are:');
-    console.log(results);
+    if (err) return next(err);
 
     res.status(200).send();
   });
