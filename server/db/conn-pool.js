@@ -6,7 +6,7 @@ const config = {
   connectionLimit: 10,
   host: 'localhost',
   user: 'root',
-  password: 'mkyong186mkyong186',
+  password: process.env.FONEBOOK_DB_PASSWORD,
   database: 'fonebook'
 };
 
