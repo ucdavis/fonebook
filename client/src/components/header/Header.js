@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import './Header.css';
 
 class Header extends Component {
-  render() {
-    return (
-      <div className="header">
+	render() {
+		return (
+			<div className="header">
 				header (({this.props.cat}))
-      </div>
-    );
-  }
+			</div>
+		);
+	}
 }
 
 Header.propTypes = {
