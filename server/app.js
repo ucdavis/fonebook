@@ -6,6 +6,13 @@ const app = express();
 // For parsing application/json
 app.use(bodyParser.json());
 
+// Enable CORS
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // Set up routes
 const statusRoute = require('./routes/status');
 const workgroupsRoute = require('./routes/workgroups');
