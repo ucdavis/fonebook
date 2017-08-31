@@ -2,8 +2,8 @@
   "dev": {
     "driver": "mysql",
     "user": "root",
-	"password": {"ENV": "FONEBOOK_DB_PASSWORD"},
-	"database": "fonebook",
-	"multipleStatements": true
- }
+    "password": {"ENV": "FONEBOOK_DB_PASSWORD"},
+    "database": "fonebook",
+    "multipleStatements": true
+  }
 }
