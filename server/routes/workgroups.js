@@ -8,12 +8,21 @@ router.get('/', (req, res) => {
 		res.status(200).send(workgroups);
 	});
 });
-
+// create
 router.post('/', (req, res, next) => {
 	models.Workgroup.create({
 		name:req.body.name
 	}).then(() => res.status(200).send());
 });
+// delete
+router.delete('/:id', (req, res, next) => {
+	models.Workgroup.destroy({
+		where:{
+			id:req.params.id
+		}
+	}).then(() => res.status(200).send());
+});
+
 
 
 module.exports = router;
