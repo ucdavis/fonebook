@@ -44,13 +44,10 @@ router.put('/:id', (req, res) => {
     if (workgroup == null) {
       res.status(404).send();
     } else {
-      if (req.body.name === undefined) {
-        res.status(400).send();
-        return;
-      }
-
       const updatedWorkgroup = workgroup;
-      updatedWorkgroup.name = req.body.name;
+      if (req.body.name !== undefined) {
+        updatedWorkgroup.name = req.body.name;
+      }
 
       updatedWorkgroup.save().then(
         () => res.status(200).send(updatedWorkgroup)

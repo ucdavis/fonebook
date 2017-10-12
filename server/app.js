@@ -16,9 +16,11 @@ app.use((req, res, next) => {
 // Set up routes
 const statusRoute = require('./routes/status');
 const workgroupsRoute = require('./routes/workgroups');
+const peopleRoute = require('./routes/people');
 
 app.use('/status', statusRoute);
 app.use('/workgroups', workgroupsRoute);
+app.use('/people', peopleRoute);
 
 // Set up error handlers
 app.use((req, res, next) => {
