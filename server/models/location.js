@@ -1,34 +1,34 @@
+'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Location = sequelize.define('Location', {
-    building: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    },
-    room: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    },
-    label: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    }
-  }, {
-    updatedAt: 'updated_at',
-    createdAt: 'created_at'
+  var Location = sequelize.define('Location', {
+	  building: {
+	      type: DataTypes.STRING,
+	      allowNull: false,
+	      validate: {
+	        notEmpty: true
+	      }
+	    },
+	    room: {
+	      type: DataTypes.STRING,
+	      allowNull: false,
+	      validate: {
+	        notEmpty: true
+	      }
+	    },
+	    label: {
+	      type: DataTypes.STRING,
+	      allowNull: false,
+	      validate: {
+	        notEmpty: true
+	      }
+	    }
+
   });
-
-//  Workgroup.associate = function(models) {
-//    Workgroup.hasMany(models.Task);
-//  }
-
+  
+  Location.associate = function (models) {
+	    Location.hasMany(models.OfficeHours, {
+	    	//foreignKey: 'location_id'
+	    });
+	};
   return Location;
 };

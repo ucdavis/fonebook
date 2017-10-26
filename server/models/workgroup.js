@@ -1,19 +1,17 @@
+'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Workgroup = sequelize.define('Workgroup', {
+  var Workgroup = sequelize.define('Workgroup', {
     name: {
-      type: DataTypes.STRING,
-      validate: {
+    	type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
         notEmpty: true
       }
     }
-  }, {
-    updatedAt: 'updated_at',
-    createdAt: 'created_at'
   });
-
-//  Workgroup.associate = function(models) {
-//    Workgroup.hasMany(models.Task);
-//  }
-
+  
+  Workgroup.associate = (models) => {
+	  Workgroup.hasMany(models.Role);
+  };
   return Workgroup;
 };
